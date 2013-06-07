@@ -12,13 +12,16 @@ Info on retail 4-5-4 calendar at:
 Currently the NRF only supplies the 4-5-4 calendar through year 2017. This program will generate dates 
 however far into the future you would like.
 
+This will output data to "output.txt" in the same directory that you run the program from. 
+Carriage returns don't display properly in notepad, so use notepad++ or something similar 
+to view output.
 
 **Use**:  
 Specify the amount of years to output with the years variable  
-Currently the output is just sent to the console/cmd prompt  
-The output shows the Gregorian year, month, and date on the left 
-and the Retail 4-5-4 year, week of year, day of week, month, week of month, 
-weeks in month (not really necessary), and day of month.  
+Currently the output is sent to "output.txt"
+The output shows the Gregorian year, month, and date on the far left 
+and the Retail 4-5-4 year, week of year, and day of week in the next
+three columns
 
 **To Do**:  
-- Output to .txt file with more readable formatting
+- Enhance output format

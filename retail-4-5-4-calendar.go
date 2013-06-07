@@ -1,8 +1,12 @@
 package main
 
 import (
-  "fmt"
+  	//"fmt"
 	"time"
+	//"io"
+	"bufio"
+	"os"
+	"strconv"
 )
 
 var years int = 101
@@ -89,11 +93,44 @@ func calcWeeksInMonth(t time.Time, r Retail454) int {
 
 func main() {
 	r := Retail454{}
+	// Open output file for writing
+// open output file
+    fo, err := os.Create("output.txt")
+    if err != nil { panic(err) }
+
+    // close fo on exit and check for its returned error
+    defer func() {
+        if err := fo.Close(); err != nil {
+            panic(err)
+        }
+    }()
+
+    // make a write buffer
+    w := bufio.NewWriter(fo)
+
+    // make a buffer to keep chunks that are read
+    buf := make([]byte, 1024)
+    str := "blank"
+
 	// generate dates, starting at Jan 30 (Gregorian), for a number of years
 	for i:=0; i <= (365 * years); i++ {
 		t := time.Date(2000, time.January, (30 + i), 12, 0, 0, 0, time.UTC)
 		r = calcRetail454(t, i, r)
-		fmt.Printf("Gregorian %d %2d %2d %s %d %2d %2d %2d %2d %2d %2d %s\n", t.Year(), int(t.Month()), t.Day(), "  ||  ",
-			 			r.Retail454year, r.Retail454weekofyear, r.Retail454dayofweek, r.Retail454month, r.Retail454weekofmonth, r.Retail454weeksinmonth, r.Retail454dayofmonth,  "Retail Date")
+		// debug output 
+		// fmt.Printf("Gregorian %d %2d %2d %s %d %2d %2d %2d %2d %2d %2d %s\n", t.Year(), int(t.Month()), t.Day(), "  ||  ",
+		//	 			r.Retail454year, r.Retail454weekofyear, r.Retail454dayofweek, r.Retail454month, r.Retail454weekofmonth, r.Retail454weeksinmonth, r.Retail454dayofmonth,  "Retail Date")
+		
+
+		// build line to write to file
+		str = strconv.Itoa(t.Year()) + "-" + strconv.Itoa(int(t.Month())) + "-" + strconv.Itoa(t.Day()) + " " + strconv.Itoa(r.Retail454year) + " " + strconv.Itoa(r.Retail454weekofyear) + " " + strconv.Itoa(r.Retail454dayofweek) + "\r"
+		
+		//Print to file
+        	buf = []byte(str)
+        	// write a chunk
+        	if _, err := w.Write(buf); err != nil {
+		        panic(err)
+       		}
+       		if err = w.Flush(); err != nil { panic(err) }
+
 	}
 }
