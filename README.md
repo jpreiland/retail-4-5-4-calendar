@@ -18,7 +18,7 @@ to view output.
 
 **Use**:  
 Specify the amount of years to output with the years variable  
-Currently the output is sent to "output.txt"
+Currently the output is sent to "output.txt"  
 The output shows the Gregorian year, month, and date on the far left 
 and the Retail 4-5-4 year, week of year, and day of week in the next
 three columns
