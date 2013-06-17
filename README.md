@@ -26,3 +26,4 @@ three columns
 **To Do**:  
 - Enhance output format  
 - Allow user to specify a range of dates to be printed  
+- Implement some sort of GUI
