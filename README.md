@@ -24,4 +24,5 @@ and the Retail 4-5-4 year, week of year, and day of week in the next
 three columns
 
 **To Do**:  
-- Enhance output format
+- Enhance output format  
+- Allow user to specify a range of dates to be printed  
